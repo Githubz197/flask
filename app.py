@@ -84,4 +84,6 @@ def update_lixt():
     lixt2 = result['notes'][1]['note']
     return jsonify(lixt=lixt, lixt2=lixt2)
 
-app.run()
+
+if __name__ == '__main__':
+    app.run()
