@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  
+    <script>
+        function updateLixt() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    document.getElementById("lixt").innerHTML = response.lixt;
+                    document.getElementById("lixt2").innerHTML = response.lixt2;
+                }
+            };
+            xhttp.open("GET", "/update_lixt", true);
+            xhttp.send();
+        }
+
+        setInterval(updateLixt, 5000);
+    </script>
+ 
+</head>
+<body>
+
+<form>
+  <label>
+   <h2>Refresh Tester</h2>
+    <input type="text" required />
+    <div class="label-text" id="lixt" >{{lixt1}}</div>
+  </label>
+  <button>Submit</button>
+
+</body>
+</html>

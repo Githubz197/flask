@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Riux Test</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+
+
+
+    <script>
+        function updateLixt() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    document.getElementById("lixt").innerHTML = response.lixt;
+                    document.getElementById("lixt2").innerHTML = response.lixt2;
+                }
+            };
+            xhttp.open("GET", "/update_lixt", true);
+            xhttp.send();
+            document.getElementById("lixt").disabled = true;
+        }
+
+
+    </script>
+
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<form onsubmit="updateLixt();return false">
+  <label>
+   <h2>Tiktok Downloader</h2>
+    <input type="text" required />
+    <div class="label-text" id="lixt" >{{lixt}}</div>
+  </label>
+  <label>
+    <input type="text" required />
+    <div class="label-text" id="lixt2">{{lixt2}}</div>
+  </label>
+  <button>Submit</button>
+
+<br>
+
+      {% for lixt in lixt %}
+      <p>{{ lixt }}{% if 'Mexico' in lixt %}<p>LOOOOOOL</p>{% endif %}</p><br>
+  {% endfor %}
+
+</form>
+
+
+
+
+<style>
+
+.container {  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.25fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Le Mid Ri";
+
+text-align: center;
+background-color: #333;
+color: #DDD;
+border:8px dashed #2eb9ce;
+
+border-width:2px;
+border-style:dashed;
+border-color:#2eb9ce;
+
+border-radius:50px;
+-moz-border-radius:50px;
+-webkit-border-radius:50px;
+
+-webkit-box-shadow:0px 0px 9px 1px #3584e4 ;
+-moz-box-shadow:0px 0px 9px 1px #3584e4 ;
+box-shadow:0px 0px 9px 1px #3584e4 ;
+
+}
+
+.Mid { grid-area: Mid; }
+.Le { grid-area: Le; }
+.Ri { grid-area: Ri; }
+
+</style>
+
+{% for key, value in lj.items(): %}
+<div class="container">
+  <div class="Le">{{key}}</div>
+  <div class="Mid">{{value[0]}}</div>
+  <div class="Ri">{{value[1]}}</div>
+</div>
+  {% endfor %}
+
+
+
+</body>
+</html>

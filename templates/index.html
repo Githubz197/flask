@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Say Hello</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script>
+        function updateLixt() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseT    ext);
+                    document.getElementById("lixt").innerHTML = response.lixt;
+                    document.getElementById("lixt2").innerHTML = response.lixt2;
+                }
+            };
+            xhttp.open("GET", "/update_lixt", true);
+            xhttp.send();
+        }
+
+        setInterval(updateLixt, 10000);
+    </script>
+</head>
+<body> 
+    <img src="https://raw.githubusercontent.com/MariyaSha/SimpleGreetingApp/main/logo.png">
+    <br>
+    <p id="lixt">{{lixt}}</p>
+    <form action="greet" method="post">
+        {% for message in get_flashed_messages() %}
+             <p>{{ message }}</p>
+         {% endfor %}
+        <br>
+        <input type="text" name="name_input">
+        <br>
+        <input type="submit" value="GREET" id="greet">
+    </form>
+    <p id="lixt2">{{lixt2}}</p>
+      {% for lixt in lixt %}
+      <p>{{ lixt }}{% if 'Mexico' in lixt %}<p>LOOOOOOL</p>{% endif %}</p><br>
+  {% endfor %}
+
+</body>
+</html>
